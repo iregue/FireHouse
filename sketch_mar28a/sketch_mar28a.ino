@@ -53,18 +53,27 @@ void loop() {
      Serial.print(datos[2]);
      Serial.println(" ms.");
      //Si se recibe señal de radio con niveles de humo se activa la alerta sonora
-     if((int)datos[1]>=70){
+     if((int)datos[1]>=200){
       lcd.clear();
       lcd.setCursor(0,0);
       lcd.print("ALERTA Modulo:");
       lcd.print((int)datos[0]);
       lcd.setCursor(0,1);
-      lcd.print("Humo detectado");
+      lcd.print("Valor: ");
+      lcd.print((int)datos[1]);
+      lcd.print(" ppm");
 
       tone(7,294,5000); //Se manda señal a pin D7 sonido con frecuendia de 294 Hz, suena durante 5000 ms
      }
      else{
       noTone(7);
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Sin alertas");
+      lcd.setCursor(0,1);
+      lcd.print("Valor: ");
+      lcd.print((int)datos[1]);
+      lcd.print(" ppm");
      }
  }
  else
