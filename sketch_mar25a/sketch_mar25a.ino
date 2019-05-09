@@ -40,7 +40,7 @@ void loop()
  //enviamos los datos
  bool ok = radio.write(datos, sizeof(datos));
   //reportamos por el puerto serial los datos enviados 
-  if(ok && adc_MQ >=200) //PARA TEST adc_MQ > 10. PARA DETECTAR HUMO adc_MQ >= 110
+  if(ok) //PARA TEST adc_MQ > 10. PARA DETECTAR HUMO adc_MQ >= 110
   {
      Serial.print("Datos enviados: "); 
      Serial.print(datos[0]); 
@@ -51,8 +51,9 @@ void loop()
   }
   else
   {
+    Serial.print("Valor sensor: ");
     Serial.println(adc_MQ);
-     Serial.println("no se ha podido enviar");
+    Serial.println("no se ha podido enviar");
   }
  //Si se detecta humo se activa la alerta sonora
  if(adc_MQ >=200){

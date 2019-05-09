@@ -78,6 +78,11 @@ void loop() {
  }
  else
  {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("No hay datos");
+      lcd.setCursor(0,1);
+      lcd.print("disponibles");
      Serial.println("No hay datos de radio disponibles");
  }
  delay(1000);
