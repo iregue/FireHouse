@@ -31,7 +31,6 @@ void setup()
 void loop()
 { 
  int adc_MQ = analogRead(A0); //Lectura de la salida analogica A0 donde se encuentra el sensor MQ-135
- float voltaje = adc_MQ * (5.0 / 1023.0); //Conversion de la lectura en un valor de voltaje
  
  //cargamos los datos en la variable datos[]
  datos[0]=id_modulo;
@@ -40,7 +39,7 @@ void loop()
  //enviamos los datos
  bool ok = radio.write(datos, sizeof(datos));
   //reportamos por el puerto serial los datos enviados 
-  if(ok) //PARA TEST adc_MQ > 10. PARA DETECTAR HUMO adc_MQ >= 110
+  if(ok)
   {
      Serial.print("Datos enviados: "); 
      Serial.print(datos[0]); 
@@ -55,6 +54,7 @@ void loop()
     Serial.println(adc_MQ);
     Serial.println("no se ha podido enviar");
   }
+  
  //Si se detecta humo se activa la alerta sonora
  if(adc_MQ >=200){
   tone(7,294,5000); //Se manda señal a pin D7 sonido con frecuendia de 294 Hz, suena durante 5000 ms
